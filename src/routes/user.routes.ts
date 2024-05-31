@@ -19,4 +19,6 @@ export default async (instance: FastifyInstance) => {
     handler: async (request, reply) =>
       await userController.create(request as any, reply),
   });
+
+  instance.put("/users/:userId", userController.update);
 };

@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { User } from "../schemas/user.schema";
 import { UserService } from "../services/user.service";
+import { encrypt } from "../utils";
 
 export class UserController {
   private userService: UserService;
@@ -21,10 +22,12 @@ export class UserController {
           error_code: "user_already_exists",
           message: "There is already a user with that email",
         });
-      }
-      const response = await this.userService.create(body);
-      if (response) {
-        reply.status(200);
+      } else {
+        body.password = await encrypt(body.password);
+        const response = await this.userService.create(body);
+        if (response) {
+          reply.status(200);
+        }
       }
     } catch (error: any) {
       reply.status(500).send({
@@ -32,6 +35,16 @@ export class UserController {
         message: error.message,
       });
     }
+  }
+
+  async update(
+    req: FastifyRequest<{ Body: Partial<User> }>,
+    reply: FastifyReply
+  ) {
+    const { userId } = req.params;
+    return reply.status(200).send({
+      userId: Number(userId),
+    });
   }
 }
 
