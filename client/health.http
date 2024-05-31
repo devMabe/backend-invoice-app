@@ -1,3 +1,15 @@
-@uri = http://localhost:3000
+@uri = http://localhost:3005
 
 GET {{uri}}/health
+
+
+###
+POST {{uri}}/users
+Content-Type:  application/json
+
+{
+    "name": "Mateo",
+    "lastName": "Beltran",
+    "email": "danielbelnuz18@gmail.com",
+    "password": "test.123"
+}
