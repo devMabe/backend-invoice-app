@@ -37,15 +37,15 @@ export class UserController {
     }
   }
 
-  async update(
-    req: FastifyRequest<{ Body: Partial<User> }>,
-    reply: FastifyReply
-  ) {
-    const { userId } = req.params;
-    return reply.status(200).send({
-      userId: Number(userId),
-    });
-  }
+  // async update(
+  //   req: FastifyRequest<{ Params: { userId: number }; Body: Partial<User> }>,
+  //   reply: FastifyReply
+  // ) {
+  //   const { userId } = req.params;
+  //   return reply.status(200).send({
+  //     userId: Number(userId),
+  //   });
+  // }
 }
 
 export default UserController;

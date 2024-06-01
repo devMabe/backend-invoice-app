@@ -1,9 +1,9 @@
 import { FastifyInstance } from "fastify";
-import UserSchema from "../schemas/user.schema";
+import AuthSchema from "../schemas/auth.schema";
 import { diContainer } from "@fastify/awilix";
 
 export default async (instance: FastifyInstance) => {
-  const userController = diContainer.resolve("userController");
+  const authController = diContainer.resolve("authController");
 
   instance.setErrorHandler((error, _request, reply) => {
     reply.status(400).send({
@@ -14,11 +14,9 @@ export default async (instance: FastifyInstance) => {
 
   instance.route({
     method: "POST",
-    url: "/users",
-    schema: UserSchema.schema,
+    url: "/auth/login",
+    schema: AuthSchema.schema,
     handler: async (request, reply) =>
-      await userController.create(request as any, reply),
+      await authController.login(request as any, reply),
   });
-
-  // instance.put("/users/:userId", userController.update);
 };
