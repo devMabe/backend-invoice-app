@@ -12,6 +12,17 @@ export class UserService {
 
     return found;
   }
+
+  async getById(id: number) {
+    const found = await db.user.findFirst({
+      where: {
+        id,
+      },
+    });
+    if (!found) return;
+
+    return found;
+  }
   async create(data: User) {
     const response = await db.user.create({
       data,

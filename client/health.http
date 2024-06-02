@@ -22,3 +22,16 @@ Content-Type: application/json
     "username": "danielbelnuz18@gmail.com",
     "password": "test.2123"
 }
+
+###
+POST {{uri}}/accounts
+Content-Type: application/json
+
+{
+    "name": "Cuenta gastos 2",
+    "amount": 1900000,
+    "userId": 20
+}
+
+###
+GET {{uri}}/accounts/18
