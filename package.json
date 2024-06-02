@@ -7,6 +7,7 @@
     "dev": "nodemon",
     "start": "node build/src/index.js",
     "migrate": "npx prisma migrate dev --name init",
+    "swagger": "node ./swagger.js",
     "build": "npx tsc"
   },
   "keywords": [],
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@types/node": "^20.12.13",
     "prisma": "^5.14.0",
+    "swagger-autogen": "^2.23.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },

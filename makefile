@@ -5,3 +5,6 @@ dev:
 
 migrate m:
 	@pnpm migrate
+
+doc:
+	@pnpm swagger
